@@ -1,1 +1,8 @@
+type Mutation {
+  signup(name: String!, username: String!, password: String!): signupOutput
+}
 
+type signupOutput {
+  id: Int!
+  token: String!
+}
