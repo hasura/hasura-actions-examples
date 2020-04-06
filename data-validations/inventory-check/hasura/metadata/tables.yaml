@@ -1,0 +1,70 @@
+- table:
+    schema: public
+    name: cart
+  object_relationships:
+  - name: product
+    using:
+      foreign_key_constraint_on: product_id
+  - name: store
+    using:
+      foreign_key_constraint_on: store_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+- table:
+    schema: public
+    name: inventory
+  object_relationships:
+  - name: product
+    using:
+      foreign_key_constraint_on: product_id
+  - name: store
+    using:
+      foreign_key_constraint_on: store_id
+- table:
+    schema: public
+    name: product
+  array_relationships:
+  - name: carts
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          schema: public
+          name: cart
+  - name: inventories
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          schema: public
+          name: inventory
+- table:
+    schema: public
+    name: store
+  array_relationships:
+  - name: carts
+    using:
+      foreign_key_constraint_on:
+        column: store_id
+        table:
+          schema: public
+          name: cart
+  - name: inventories
+    using:
+      foreign_key_constraint_on:
+        column: store_id
+        table:
+          schema: public
+          name: inventory
+- table:
+    schema: public
+    name: users
+  array_relationships:
+  - name: carts
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: cart

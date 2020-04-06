@@ -1,0 +1,14 @@
+actions:
+- name: createCartItem
+  definition:
+    kind: synchronous
+    handler: http://host.docker.internal:3000/createCartItem
+    forward_client_headers: true
+custom_types:
+  enums: []
+  input_objects: []
+  objects:
+  - name: signupOutput
+  - name: InsertUsersOneDerivedOutput
+  - name: CreateCartItemOutput
+  scalars: []

@@ -1,0 +1,16 @@
+type Mutation {
+  createCartItem(product_id: Int!, store_id: Int!): CreateCartItemOutput
+}
+
+type signupOutput {
+  id: Int!
+  token: String!
+}
+
+type InsertUsersOneDerivedOutput {
+  id: Int!
+}
+
+type CreateCartItemOutput {
+  id: Int!
+}
