@@ -1,14 +1,14 @@
 const fetch = require("node-fetch")
 
 const HASURA_OPERATION = `
-mutation createCartItem($product_id: Int!, $store_id: Int!, $user_id: Int!, $stock_available: Int!) {
+mutation createCartItem($product_id: Int!, $store_id: Int!, $user_id: Int!, $new_stock: Int!) {
   insert_cart_one(object: {
     product_id: $product_id, store_id: $store_id, user_id: $user_id
   }) {
     id
   }
   stock_status_update: update_inventory_by_pk(pk_columns: 
-    {product_id: $product_id, store_id: $store_id}, _set: {stock_available: $stock_available}
+    {product_id: $product_id, store_id: $store_id}, _set: {stock_available: $new_stock}
   ) {
     stock_available
   }
