@@ -35,28 +35,28 @@ const fileUpload = async (req, res, next) => {
       `;
       const variables = { file_path: "/files/" + name };
 
-	  // execute the parent mutation in Hasura
-	  const fetchResponse = await fetch(
-	    "http://localhost:8080/v1/graphql",
-	    {
-	      method: 'POST',
-	      body: JSON.stringify({
-	        query: HASURA_MUTATION,
-	        variables
-	      })
-	    }
-	  );
-  	  const { data, errors } = await fetchResponse.json();
-  	  console.log(data);
+  	  // execute the parent mutation in Hasura
+  	  const fetchResponse = await fetch(
+  	    "http://localhost:8080/v1/graphql",
+  	    {
+  	      method: 'POST',
+  	      body: JSON.stringify({
+  	        query: HASURA_MUTATION,
+  	        variables
+  	      })
+  	    }
+  	  );
+    	  const { data, errors } = await fetchResponse.json();
+    	  console.log(data);
 
-  	  // if Hasura operation errors, then throw error
-	  if (errors) {
-	    return res.status(400).json({
-	      message: errors.message
-	    })
-	  }
+    	  // if Hasura operation errors, then throw error
+  	  if (errors) {
+  	    return res.status(400).json({
+  	      message: errors.message
+  	    })
+  	  }
 
-	  // success
+  	  // success
       return res.json({ file_path: "/files/"+name} );
   } catch (e) {
       next(e);
