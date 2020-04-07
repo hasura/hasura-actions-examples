@@ -1,0 +1,7 @@
+type Mutation {
+  fileUpload(name: String!, type: String!, base64str: String!): fileOutput
+}
+
+type fileOutput {
+  file_path: String!
+}
