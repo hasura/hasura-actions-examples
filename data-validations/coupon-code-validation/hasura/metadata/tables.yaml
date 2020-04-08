@@ -1,0 +1,46 @@
+- table:
+    schema: public
+    name: cart
+  object_relationships:
+  - name: product
+    using:
+      foreign_key_constraint_on: product_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - product_id
+      - user_id
+      - created_at
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: coupon
+- table:
+    schema: public
+    name: product
+  array_relationships:
+  - name: carts
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          schema: public
+          name: cart
+- table:
+    schema: public
+    name: users
+  array_relationships:
+  - name: carts
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: cart

@@ -1,0 +1,13 @@
+type Mutation {
+  validateCoupon(code: String!): couponOutput
+}
+
+type fileOutput {
+  file_path: String!
+}
+
+type couponOutput {
+  valid: Boolean!
+  discountedPrice: Int!
+  discountApplied: Int!
+}
