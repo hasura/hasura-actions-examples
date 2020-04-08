@@ -1,0 +1,13 @@
+actions:
+- name: validateCoupon
+  definition:
+    kind: synchronous
+    handler: http://host.docker.internal:3000/validateCoupon
+    forward_client_headers: true
+custom_types:
+  enums: []
+  input_objects: []
+  objects:
+  - name: fileOutput
+  - name: couponOutput
+  scalars: []
