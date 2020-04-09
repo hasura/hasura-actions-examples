@@ -1,6 +1,4 @@
-Example Action to perform file uploads using GraphQL. The handler accepts a base64 encoded version of the file.
-
-[Link to Youtube Demo](https://www.youtube.com/watch?v=mipb4N6ZzfM)
+Example Action to send email using GraphQL. The handler accepts an email input and uses Sendgrid's SMTP API to send an email.
 
 ## Start Hasura and Postgres
 
