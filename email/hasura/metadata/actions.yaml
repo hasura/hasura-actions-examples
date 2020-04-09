@@ -1,0 +1,11 @@
+actions:
+- name: sendEmail
+  definition:
+    kind: synchronous
+    handler: http://host.docker.internal:3000/sendEmail
+custom_types:
+  enums: []
+  input_objects: []
+  objects:
+  - name: emailOutput
+  scalars: []
