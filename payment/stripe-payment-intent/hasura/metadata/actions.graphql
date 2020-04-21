@@ -1,0 +1,35 @@
+type Mutation {
+  createCartItem (
+    product_id: Int!
+    store_id: Int!
+  ): CreateCartItemOutput
+}
+
+
+type Mutation {
+  orderPayment (
+    currency: String!
+    addressDetails: addressInput
+  ): orderOutput
+}
+
+
+
+
+input addressInput {
+  address_line_1 : String!
+  address_postal_code : Int!
+  address_city : String!
+  address_state : String!
+  address_country : String!
+}
+
+type CreateCartItemOutput {
+  id : Int!
+}
+
+type orderOutput {
+  publishableKey : String!
+  clientSecret : String!
+}
+

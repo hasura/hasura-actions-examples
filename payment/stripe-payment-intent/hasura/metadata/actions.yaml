@@ -1,0 +1,20 @@
+actions:
+- name: createCartItem
+  definition:
+    kind: synchronous
+    handler: http://host.docker.internal:3000/createCartItem
+    forward_client_headers: true
+- name: orderPayment
+  definition:
+    kind: synchronous
+    handler: http://host.docker.internal:4242/create-payment-intent
+  permissions:
+  - role: user
+custom_types:
+  enums: []
+  input_objects:
+  - name: addressInput
+  objects:
+  - name: CreateCartItemOutput
+  - name: orderOutput
+  scalars: []
