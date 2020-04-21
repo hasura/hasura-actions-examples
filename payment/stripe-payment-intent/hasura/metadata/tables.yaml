@@ -1,0 +1,192 @@
+- table:
+    schema: public
+    name: cart
+  object_relationships:
+  - name: product
+    using:
+      foreign_key_constraint_on: product_id
+  - name: store
+    using:
+      foreign_key_constraint_on: store_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - user_id
+      - product_id
+      - store_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: inventory
+  object_relationships:
+  - name: product
+    using:
+      foreign_key_constraint_on: product_id
+  - name: store
+    using:
+      foreign_key_constraint_on: store_id
+- table:
+    schema: public
+    name: order
+  object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  array_relationships:
+  - name: order_items
+    using:
+      foreign_key_constraint_on:
+        column: order_id
+        table:
+          schema: public
+          name: order_item
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-user-id
+      columns:
+      - address_city
+      - address_country
+      - address_line_1
+      - address_postal_code
+      - address_state
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - user_id
+      - created_at
+      - address_line_1
+      - address_postal_code
+      - address_city
+      - address_state
+      - address_country
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: order_item
+  object_relationships:
+  - name: order
+    using:
+      foreign_key_constraint_on: order_id
+  - name: product
+    using:
+      foreign_key_constraint_on: product_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-user-id
+      columns:
+      - order_id
+      - price
+      - product_id
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - product_id
+      - user_id
+      - price
+      - created_at
+      - order_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: product
+  array_relationships:
+  - name: carts
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          schema: public
+          name: cart
+  - name: inventories
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          schema: public
+          name: inventory
+  - name: order_items
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          schema: public
+          name: order_item
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - name
+      - price
+      filter: {}
+- table:
+    schema: public
+    name: store
+  array_relationships:
+  - name: carts
+    using:
+      foreign_key_constraint_on:
+        column: store_id
+        table:
+          schema: public
+          name: cart
+  - name: inventories
+    using:
+      foreign_key_constraint_on:
+        column: store_id
+        table:
+          schema: public
+          name: inventory
+- table:
+    schema: public
+    name: users
+  array_relationships:
+  - name: carts
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: cart
+  - name: order_items
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: order_item
+  - name: orders
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: order
