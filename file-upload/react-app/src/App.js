@@ -63,7 +63,7 @@ function App() {
     <div className="App">
       <form onSubmit={onFormSubmit}>
         <h1>File Upload</h1>
-        <input type="file" onChange={onChange} />
+        <input type="file" onChange={onChange} required />
         <button type="submit">Upload</button>
       </form>
       <div>{filepath ? <a href={`http://localhost:3000${filepath}`}>Open file</a> : null}</div>
