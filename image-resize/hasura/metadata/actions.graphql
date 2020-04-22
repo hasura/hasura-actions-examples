@@ -1,0 +1,15 @@
+type Mutation {
+  imageResize (
+    imageUrl: String!
+    width: Int!
+    height: Int!
+  ): imageOutput
+}
+
+
+
+
+type imageOutput {
+  imageUrl : String!
+}
+
