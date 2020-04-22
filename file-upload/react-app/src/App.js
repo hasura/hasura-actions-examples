@@ -31,27 +31,27 @@ function App() {
       })
     };
     fetch(url, options)
-    .then(res => res.json())
-    .then(res => {
-      if(res.data.errors) {
-        alert("Something went wrong");
-      } else {
-        setFilePath(res.data.fileUpload.file_path)
-      }
-    });
+      .then(res => res.json())
+      .then(res => {
+        if (res.errors) {
+          alert("Something went wrong");
+        } else {
+          setFilePath(res.data.fileUpload.file_path)
+        }
+      });
   }
 
   const onChange = (e) => {
     setFile(e.target.files[0])
     const reader = new FileReader();
-    if(e.target.files[0]) {
+    if (e.target.files[0]) {
       reader.readAsBinaryString(e.target.files[0]);
     }
-    reader.onload = function() {
+    reader.onload = function () {
       const base64str = btoa(reader.result);
       setBase64Str(base64str);
     };
-    reader.onerror = function() {
+    reader.onerror = function () {
       console.log('Unable to parse file');
     };
   }
