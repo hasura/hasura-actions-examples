@@ -20,6 +20,7 @@ hasura metadata apply
 
 ```
 cd functions/nodejs-express
+mkdir -p public/files
 npm install
 npm start
 ```
