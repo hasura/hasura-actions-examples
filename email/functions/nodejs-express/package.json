@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "esm": "^3.2.25",
-    "nodemon": "1.18.4"
+    "nodemon": "2.0.3"
   },
   "keywords": []
 }
